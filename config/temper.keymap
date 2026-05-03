@@ -73,12 +73,13 @@
             mods = <(MOD_LSFT)>;
         };
 
-        qmrk_excl: qmrk_excl {
+        excl_qmrk: excl_qmrk {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp QMARK>, <&kp EXCL>;
+            bindings = <&kp EXCLAMATION>, <&kp QUESTION>;
 
             mods = <(MOD_LSFT)>;
+            label = "EXCL_QMRK";
         };
 
         slh_morph: slh_morph {
@@ -107,12 +108,37 @@
         };
     };
 
+    combos {
+        compatible = "zmk,combos";
+
+        ue {
+            bindings = <&kp RA(Y)>;
+            key-positions = <7 17>;
+        };
+
+        ae {
+            bindings = <&kp RA(Q)>;
+            key-positions = <10 17>;
+        };
+
+        oe {
+            bindings = <&kp RA(P)>;
+            key-positions = <19 17>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         colemak_dh {
             bindings = <
-&kp Q  &kp W  &kp F  &kp P  &kp B  &kp J  &kp L  &kp U  &kp Y  &kp APOS  &kp A  &kp R  &kp S  &kp T  &kp G  &kp M  &kp N  &kp E  &kp I  &kp O  &kp Z  &kp X  &kp C  &kp D  &kp V  &kp K  &kp H  &comma_semi  &dot_colon  &qmrk_excl  &mo 4  &mo 2  &smart_shft  &kp SPACE  &mo 3  &mo 5
+&kp Q  &kp W  &kp F  &kp P  &kp B  &kp J  &kp L  &kp U  &kp Y  &kp APOS  &kp A  &kp R  &kp S  &kp T  &kp G  &kp M  &kp N  &kp E  &kp I  &kp O  &kp Z  &kp X  &kp C  &kp D  &kp V  &kp K  &kp H  &comma_semi  &dot_colon  &excl_qmrk  &mo 4  &mo 3  &smart_shft  &kp SPACE  &mo 7  &mo 8
+            >;
+        };
+
+        alt_sym {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &mo 6  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
@@ -124,25 +150,37 @@
 
         nav_layer {
             bindings = <
-&kp ESC  &kp K_BACK  &kp LC(F)  &kp K_FORWARD  &trans  &bspc_del  &kp HOME  &kp END  &kp TAB  &kp BSPC  &sk LEFT_ALT  &sk LEFT_WIN  &sk LEFT_SHIFT  &sk LEFT_CONTROL  &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &gresc  &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(Y)  &kp LC(V)  &kp BACKSPACE  &kp PAGE_DOWN  &kp PAGE_UP  &menu  &trans  &trans  &trans  &trans  &kp ENTER  &trans  &trans
+&kp ESC  &kp K_BACK  &kp LC(F)  &kp K_FORWARD  &trans  &bspc_del  &kp HOME  &kp END  &kp TAB  &trans  &sk LEFT_ALT  &sk LEFT_WIN  &sk LEFT_SHIFT  &sk LEFT_CONTROL  &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &gresc  &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(Y)  &kp LC(V)  &trans  &kp PAGE_DOWN  &kp PAGE_UP  &menu  &trans  &trans  &trans  &trans  &kp ENTER  &kp TAB  &trans
+            >;
+        };
+
+        sym_right {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &kp CARET  &kp LBKT  &kp RBKT  &kp STAR  &kp SINGLE_QUOTE  &sk LEFT_ALT  &sk LEFT_WIN  &mo 5  &sk LEFT_CONTROL  &trans  &kp HASH  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMI  &kp GRAVE  &trans  &trans  &trans  &trans  &trans  &kp AT  &kp MINUS  &kp COMMA  &kp DOT  &kp QUESTION  &trans  &trans  &trans  &kp UNDER  &kp SLASH  &trans
+            >;
+        };
+
+        shift_sym_right {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &kp PIPE  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp DOLLAR  &kp DOUBLE_QUOTES  &trans  &trans  &trans  &trans  &trans  &kp AMPERSAND  &kp EQUAL  &kp PLUS  &kp COLON  &kp TILDE  &trans  &trans  &trans  &trans  &trans  &kp PERCENT  &kp MINUS  &kp LESS_THAN  &kp GREATER_THAN  &kp EXCL  &trans  &trans  &trans  &key_repeat  &kp BACKSLASH  &trans
             >;
         };
 
         sym_layer {
             bindings = <
-&kp GRAVE  &kp LT  &kp GREATER_THAN  &kp MINUS  &kp PIPE  &kp CARET  &kp LEFT_BRACE  &kp RBRC  &kp DOLLAR  &kp BACKSLASH  &kp EXCL  &kp STAR  &kp FSLH  &kp EQUAL  &kp AMPS  &kp HASH  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp DOUBLE_QUOTES  &kp TILDE  &kp PLUS  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PERCENT  &kp AT_SIGN  &kp COLON  &kp COMMA  &kp DOT  &kp SQT  &trans  &trans  &kp UNDER  &trans  &trans  &trans
+&kp GRAVE  &kp LT  &kp GREATER_THAN  &kp MINUS  &kp PIPE  &kp CARET  &kp LEFT_BRACE  &kp RBRC  &kp DOLLAR  &kp BACKSLASH  &kp EXCL  &kp STAR  &kp FSLH  &kp EQUAL  &kp AMPS  &kp HASH  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp DOUBLE_QUOTES  &kp TILDE  &kp PLUS  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PERCENT  &kp AT_SIGN  &kp COLON  &kp COMMA  &kp DOT  &kp SQT  &trans  &trans  &trans  &kp UNDER  &trans  &trans
             >;
         };
 
         num_layer {
             bindings = <
-&kp TILDE  &kp AT  &kp LBRC  &kp RBRC  &kp PRCNT  &kp STAR  &kp N7  &kp N8  &kp N9  &kp MINUS  &kp LEFT_ALT  &kp LEFT_WIN  &kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp DLLR  &kp UNDER  &kp N4  &kp N5  &kp N6  &kp PLUS  &amps_morph  &kp LT  &kp LBKT  &kp RBKT  &kp GT  &slh_morph  &kp N1  &kp N2  &kp N3  &kp EQUAL  &trans  &trans  &trans  &kp N0  &trans  &trans
+&kp TILDE  &kp AT  &kp LBRC  &kp RBRC  &kp PRCNT  &kp STAR  &kp N7  &kp N8  &kp N9  &kp MINUS  &kp LEFT_ALT  &kp LEFT_WIN  &kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp DLLR  &kp SLASH  &kp N4  &kp N5  &kp N6  &kp PLUS  &amps_morph  &kp LT  &kp LBKT  &kp RBKT  &kp GT  &kp N0  &kp N1  &kp N2  &kp N3  &kp EQUAL  &trans  &trans  &trans  &kp N0  &trans  &trans
             >;
         };
 
         fun_layer {
             bindings = <
-&tog 0  &kp K_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &out OUT_USB  &tog 1  &kp F7  &kp F8  &kp F9  &kp F12  &kp LEFT_ALT  &kp LEFT_WIN  &kp LEFT_SHIFT  &kp LEFT_CONTROL  &bt BT_SEL 0  &trans  &kp F4  &kp F5  &kp F6  &kp F11  &bt BT_CLR  &kp C_PREV  &kp C_PP  &kp C_NEXT  &out OUT_BLE  &trans  &kp F1  &kp F2  &kp F3  &kp F10  &trans  &trans  &trans  &trans  &trans  &trans
+&tog 0  &kp K_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &out OUT_USB  &tog 2  &kp F7  &kp F8  &kp F9  &kp F12  &kp LEFT_ALT  &kp LEFT_WIN  &kp LEFT_SHIFT  &kp LEFT_CONTROL  &bt BT_SEL 0  &to 1  &kp F4  &kp F5  &kp F6  &kp F11  &bt BT_CLR  &kp C_PREV  &kp C_PP  &kp C_NEXT  &out OUT_BLE  &trans  &kp F1  &kp F2  &kp F3  &kp F10  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
